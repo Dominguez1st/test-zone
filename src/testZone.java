@@ -238,8 +238,6 @@ public class testZone {
     return sum % 10 == 0;
   }
 
-//----------------------- EXAM 2 -------------------------
-
   public static long nextPerfectSquare(long input) {
     long nextSquare = 0;
     if (input == Math.sqrt(input * input)) {
@@ -440,21 +438,35 @@ public class testZone {
     return input;
   }
 
-  public static String capitalize(String s){
-    String r = "";
+  public static String[] capitalize(String s){
+    String firstCapital = "";
     for (int i = 0; i < s.length(); i++) {
       if (i % 2 == 0) {
-        r += s.substring(i, i + 1).toUpperCase();
+        firstCapital += s.substring(i, i + 1).toUpperCase();
       } else {
-        r += s.substring(i, i + 1);
+        firstCapital += s.substring(i, i + 1);
       }
     }
-    System.out.println(r);
-    return r;
+    System.out.println(firstCapital);
+
+    String secondCapital = "";
+    for (int i = 0; i < s.length(); i++) {
+      if (i % 2 != 0) {
+        secondCapital += s.substring(i, i + 1).toUpperCase();
+      } else {
+        secondCapital += s.substring(i, i + 1);
+      }
+    }
+    System.out.println(secondCapital);
+
+
+    String[] twoAlternatingCaps = {firstCapital, secondCapital};
+    return twoAlternatingCaps;
   }
 
+
   public static void main(String[] args) {
-    capitalize("camelCasing");
+    capitalize("abcdef");
   }
 }
 
