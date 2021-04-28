@@ -542,7 +542,6 @@ public class testZone {
       String newWord = ascii + textWords[i].substring(1);
       newTextWords[i] = newWord;
     }
-    System.out.println(String.join(" ", newTextWords));
     return String.join(" ", newTextWords);
   }
 
