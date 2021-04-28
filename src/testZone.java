@@ -464,9 +464,91 @@ public class testZone {
     return twoAlternatingCaps;
   }
 
+  public static String disemvowel(String str) {
+    // Code away...
+    return str.replaceAll("e", "");
+  }
+
+  public static String whoLikesIt(String... names) {
+    if (names.length == 0){
+      System.out.println("no one likes this");
+      return "no one likes this";
+    }
+    else if (names.length == 1){
+      System.out.println(names[0] + " likes this");
+      return (names[0] + " likes this");
+    }
+    else if (names.length == 2){
+      System.out.println(names[0] +" and " + names[1] + " like this");
+      return (names[0] +" and " + names[1] + " like this");
+    }
+    else if (names.length == 3){
+      System.out.println(names[0] + ", " + names[1] + " and " + names[2]+ " like this");
+      return (names[0] + ", " + names[1] + " and " + names[2]+ " like this");
+    }
+    else {
+      System.out.println(names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this");
+      return (names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this");
+    }
+  }
+
+  public static String JadenCase (String phrase){
+    if (phrase == null){
+      return null;
+    }
+    if (phrase.equals("")){
+      return null;
+    }
+    String [] arr = phrase.split(" ");
+    StringBuffer sb = new StringBuffer();
+
+    for (int i = 0; i < arr.length; i++) {
+      sb.append(Character.toUpperCase(arr[i].charAt(0))).append(arr[i].substring(1)).append(" ");
+    }
+    System.out.println(sb.toString().trim());
+    return sb.toString().trim();
+  }
+
+  public static String accum(String s) {
+    String output = "";
+
+    for (int i = 0; i < s.length(); i++){
+      output = output + s.toUpperCase().charAt(i);
+      for (int j = 0; j < i; j++){
+        output = output + s.toLowerCase().charAt(i);
+      }
+      output = output + "-";
+    }
+
+    System.out.println(output.substring(0, output.length()-1));
+    return output.substring(0, output.length()-1);
+  }
+
+  public static String encryptThis (String text) {
+    if(text.equals("")){
+      return "";
+    }
+    String[] textWords = text.split(" ");
+    String[] newTextWords = new String[textWords.length];
+    for (int i = 0; i < textWords.length; i++){
+      int ascii = textWords[i].charAt(0);
+      if (textWords[i].length() > 2){
+        char[] swapper = textWords[i].toCharArray();
+        char temp = swapper[1];
+        swapper[1] = swapper[swapper.length-1];
+        swapper[swapper.length-1] = temp;
+        textWords[i] = new String(swapper);
+      }
+      String newWord = ascii + textWords[i].substring(1);
+      newTextWords[i] = newWord;
+    }
+    System.out.println(String.join(" ", newTextWords));
+    return String.join(" ", newTextWords);
+  }
+
 
   public static void main(String[] args) {
-    capitalize("abcdef");
+    encryptThis("A wise old owl lived in an oak");
   }
 }
 
