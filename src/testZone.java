@@ -343,7 +343,7 @@ public class testZone {
           encode += ")";
           break;
         }
-        if (j == word.length()-1) {
+        if (j == word.length() - 1) {
           encode += "(";
           break;
         }
@@ -357,7 +357,7 @@ public class testZone {
     String test = "";
     String[] strArray = numbers.split(" ");
     int[] intArray = new int[strArray.length];
-    for (int i= 0; i < strArray.length; i++){
+    for (int i = 0; i < strArray.length; i++) {
       intArray[i] = Integer.parseInt(strArray[i]);
     }
 
@@ -370,35 +370,31 @@ public class testZone {
   }
 
   public static String Tickets(int[] peopleInLine) {
-      int jacksonCounter = 0;
-      int grantCounter = 0;
-      int benCounter = 0;
+    int jacksonCounter = 0;
+    int grantCounter = 0;
+    int benCounter = 0;
 
-      for (int bill : peopleInLine){
-        if(bill == 25){
-          jacksonCounter += 1;
-        }
-        else if (bill == 50 && jacksonCounter > 0){
-          jacksonCounter -= 1;
-          grantCounter += 1;
-        }
-        else if (bill == 100 && jacksonCounter > 0 && grantCounter > 0){
-          jacksonCounter -= 1;
-          grantCounter -= 1;
-          benCounter += 1;
-        }
-        else if (bill == 100 && jacksonCounter >= 3 && grantCounter < 0){
-          jacksonCounter -= 3;
-          benCounter += 1;
-        }
-        else {
-          return "NO";
-        }
+    for (int bill : peopleInLine) {
+      if (bill == 25) {
+        jacksonCounter += 1;
+      } else if (bill == 50 && jacksonCounter > 0) {
+        jacksonCounter -= 1;
+        grantCounter += 1;
+      } else if (bill == 100 && jacksonCounter > 0 && grantCounter > 0) {
+        jacksonCounter -= 1;
+        grantCounter -= 1;
+        benCounter += 1;
+      } else if (bill == 100 && jacksonCounter >= 3 && grantCounter < 0) {
+        jacksonCounter -= 3;
+        benCounter += 1;
+      } else {
+        return "NO";
       }
-      return "YES";
     }
+    return "YES";
+  }
 
-  public static String SongDecoder (String song) {
+  public static String SongDecoder(String song) {
     String wub = " " + "WUB" + " ";
     song = song.replaceAll(wub, "");
     return song;
@@ -408,10 +404,10 @@ public class testZone {
     double value = 0;
     double divisor = 1;
 
-    for ( int i = 0; i < n; i++, divisor += 3){
+    for (int i = 0; i < n; i++, divisor += 3) {
       value += 1 / divisor;
     }
-    return String.format( "%.2f", value);
+    return String.format("%.2f", value);
   }
 
   public static int ConvertBinaryArrayToInt(List<Integer> binary) {
@@ -423,12 +419,12 @@ public class testZone {
     }
     decNum = String.valueOf(biNum);
 
-    return Integer.parseInt(decNum,2);
+    return Integer.parseInt(decNum, 2);
   }
 
   public static String camelCase(String input) {
-    for (int i = 0; i < input.length(); i++){
-      if (Character.isUpperCase(input.charAt(i))){
+    for (int i = 0; i < input.length(); i++) {
+      if (Character.isUpperCase(input.charAt(i))) {
         input = new StringBuilder(input).insert(i, " ").toString();
         i += 1;
         System.out.println(input);
@@ -438,7 +434,7 @@ public class testZone {
     return input;
   }
 
-  public static String[] capitalize(String s){
+  public static String[] capitalize(String s) {
     String firstCapital = "";
     for (int i = 0; i < s.length(); i++) {
       if (i % 2 == 0) {
@@ -459,7 +455,6 @@ public class testZone {
     }
     System.out.println(secondCapital);
 
-
     String[] twoAlternatingCaps = {firstCapital, secondCapital};
     return twoAlternatingCaps;
   }
@@ -470,36 +465,33 @@ public class testZone {
   }
 
   public static String whoLikesIt(String... names) {
-    if (names.length == 0){
+    if (names.length == 0) {
       System.out.println("no one likes this");
       return "no one likes this";
-    }
-    else if (names.length == 1){
+    } else if (names.length == 1) {
       System.out.println(names[0] + " likes this");
       return (names[0] + " likes this");
-    }
-    else if (names.length == 2){
-      System.out.println(names[0] +" and " + names[1] + " like this");
-      return (names[0] +" and " + names[1] + " like this");
-    }
-    else if (names.length == 3){
-      System.out.println(names[0] + ", " + names[1] + " and " + names[2]+ " like this");
-      return (names[0] + ", " + names[1] + " and " + names[2]+ " like this");
-    }
-    else {
-      System.out.println(names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this");
+    } else if (names.length == 2) {
+      System.out.println(names[0] + " and " + names[1] + " like this");
+      return (names[0] + " and " + names[1] + " like this");
+    } else if (names.length == 3) {
+      System.out.println(names[0] + ", " + names[1] + " and " + names[2] + " like this");
+      return (names[0] + ", " + names[1] + " and " + names[2] + " like this");
+    } else {
+      System.out
+          .println(names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this");
       return (names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this");
     }
   }
 
-  public static String JadenCase (String phrase){
-    if (phrase == null){
+  public static String JadenCase(String phrase) {
+    if (phrase == null) {
       return null;
     }
-    if (phrase.equals("")){
+    if (phrase.equals("")) {
       return null;
     }
-    String [] arr = phrase.split(" ");
+    String[] arr = phrase.split(" ");
     StringBuffer sb = new StringBuffer();
 
     for (int i = 0; i < arr.length; i++) {
@@ -512,37 +504,51 @@ public class testZone {
   public static String accum(String s) {
     String output = "";
 
-    for (int i = 0; i < s.length(); i++){
+    for (int i = 0; i < s.length(); i++) {
       output = output + s.toUpperCase().charAt(i);
-      for (int j = 0; j < i; j++){
+      for (int j = 0; j < i; j++) {
         output = output + s.toLowerCase().charAt(i);
       }
       output = output + "-";
     }
 
-    System.out.println(output.substring(0, output.length()-1));
-    return output.substring(0, output.length()-1);
+    System.out.println(output.substring(0, output.length() - 1));
+    return output.substring(0, output.length() - 1);
   }
 
-  public static String encryptThis (String text) {
-    if(text.equals("")){
+  public static String encryptThis(String text) {
+    if (text.equals("")) {
       return "";
     }
     String[] textWords = text.split(" ");
     String[] newTextWords = new String[textWords.length];
-    for (int i = 0; i < textWords.length; i++){
+    for (int i = 0; i < textWords.length; i++) {
       int ascii = textWords[i].charAt(0);
-      if (textWords[i].length() > 2){
+      if (textWords[i].length() > 2) {
         char[] swapper = textWords[i].toCharArray();
         char temp = swapper[1];
-        swapper[1] = swapper[swapper.length-1];
-        swapper[swapper.length-1] = temp;
+        swapper[1] = swapper[swapper.length - 1];
+        swapper[swapper.length - 1] = temp;
         textWords[i] = new String(swapper);
       }
       String newWord = ascii + textWords[i].substring(1);
       newTextWords[i] = newWord;
     }
     return String.join(" ", newTextWords);
+  }
+
+  public static int countSmileys(List<String> arr) {
+    int smileyCount = 0;
+    for (String face : arr) {
+      char[] facialFeatures = face.toCharArray();
+      if ((facialFeatures.length == 2) && ((facialFeatures[0] == ':' || facialFeatures[0] == ';') && (facialFeatures[1] == ')' || facialFeatures[1] == 'D')) ){
+        smileyCount += 1;
+      }
+      if ((facialFeatures.length == 3) && (facialFeatures[0] == ':' || facialFeatures[0] == ';') && (facialFeatures[1] == '-' || facialFeatures[1] == '~') && (facialFeatures[2] == ')' || facialFeatures[2] == 'D') ){
+        smileyCount += 1;
+      }
+    }
+    return smileyCount;
   }
 
 
