@@ -541,14 +541,36 @@ public class testZone {
     int smileyCount = 0;
     for (String face : arr) {
       char[] facialFeatures = face.toCharArray();
-      if ((facialFeatures.length == 2) && ((facialFeatures[0] == ':' || facialFeatures[0] == ';') && (facialFeatures[1] == ')' || facialFeatures[1] == 'D')) ){
+      if ((facialFeatures.length == 2) && ((facialFeatures[0] == ':' || facialFeatures[0] == ';')
+          && (facialFeatures[1] == ')' || facialFeatures[1] == 'D'))) {
         smileyCount += 1;
       }
-      if ((facialFeatures.length == 3) && (facialFeatures[0] == ':' || facialFeatures[0] == ';') && (facialFeatures[1] == '-' || facialFeatures[1] == '~') && (facialFeatures[2] == ')' || facialFeatures[2] == 'D') ){
+      if ((facialFeatures.length == 3) && (facialFeatures[0] == ':' || facialFeatures[0] == ';')
+          && (facialFeatures[1] == '-' || facialFeatures[1] == '~') && (facialFeatures[2] == ')'
+          || facialFeatures[2] == 'D')) {
         smileyCount += 1;
       }
     }
     return smileyCount;
+  }
+
+  public static double findUniq(double arr[])   {
+    double unique = 0;
+    for (int i = 0; i < arr.length; i++) {
+      int j;
+      for (j = 0; j < i; j++) {
+        if (arr[i] == arr[j]) {
+          break;
+        }
+      }
+      if (i == j) {
+        unique = arr[i];
+      }
+    }
+    if (arr[0] != arr[1] && arr[arr.length-1] == arr[1]){
+      return arr[0];
+    }
+    return unique;
   }
 
 
