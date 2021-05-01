@@ -573,9 +573,28 @@ public class testZone {
     return unique;
   }
 
+  public static int solve(final String s) {
+    String[] consonants = s.split("(a)|(e)|(i)|(o)|(u)");
+    int consonantValue = 0;
+    int sum = 0;
+    for (String consonant : consonants) {
+      char[] letter = consonant.toCharArray();
+      for (char ch : consonant.toCharArray()){
+        if (ch >= 'a' && ch <= 'z'){
+          sum += 1 + ch - 'a';
+        }
+        if (sum > consonantValue){
+          consonantValue = sum;
+        }
+      }
+      sum = 0;
+    }
+    return consonantValue;
+  }
+
 
   public static void main(String[] args) {
-    encryptThis("A wise old owl lived in an oak");
+    solve("strength");
   }
 }
 
