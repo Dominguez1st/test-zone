@@ -592,9 +592,16 @@ public class testZone {
     return consonantValue;
   }
 
+  public static int[] isPerfectPower(int n) {
+    for(int i = 2; i <= ((n < 30) ? n : 30) && i < 30; i++) {
+      double result = (double)Math.round(Math.pow(n, (double)1/i) * Math.pow(10, 10)) /  Math.pow(10, 10);
+      if((result == Math.floor(result))) return new int[] {(int)result, i};
+    }
+    return null;
+  }
 
   public static void main(String[] args) {
-    solve("strength");
+    isPerfectPower(4);
   }
 }
 
