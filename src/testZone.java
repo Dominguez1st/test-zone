@@ -612,8 +612,35 @@ public class testZone {
     return count;
   }
 
+  public static int countDeafRats(final String town) {
+    int piperPlacement = 0;
+    int deafRats = 0;
+    for (int i = 0; i < town.length(); i++){
+      if (town.charAt(i) == 'P'){
+        piperPlacement = i;
+      }
+    }
+    for (int i = 0; i < town.length(); i++) {
+      if (piperPlacement > i && town.charAt(i)=='~' && town.charAt(i+1)=='O'){
+        i++;
+      }
+      else if (piperPlacement > i && town.charAt(i)=='O' && town.charAt(i+1)=='~'){
+        deafRats++;
+        i++;
+      }
+      if (piperPlacement < i && town.charAt(i)=='O' && town.charAt(i+1)=='~'){
+        i++;
+      }
+      else if (piperPlacement < i && town.charAt(i)=='~' && town.charAt(i+1)=='O'){
+        deafRats++;
+        i++;
+      }
+    }
+    return deafRats;
+  }
+
   public static void main(String[] args) {
-    bouncingBall(3.0, .66, 1.5 );
+    countDeafRats("P O~ O~ ~O O~" );
   }
 }
 
