@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -639,8 +641,30 @@ public class testZone {
     return deafRats;
   }
 
+  public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth, double percentLossByMonth) {
+    int[] answer = new int[2];
+    BigDecimal savings = BigDecimal.ZERO;
+    BigDecimal dStartPriceOld = BigDecimal.valueOf(startPriceOld);
+    BigDecimal dStartPriceNew = BigDecimal.valueOf(startPriceNew);
+    BigDecimal dPercentLossByMonth= BigDecimal.valueOf(percentLossByMonth);
+    for (int i = 0; true; i++){
+      if (savings.add(dStartPriceOld).compareTo(dStartPriceNew) >= 0){
+        answer[0] = i;
+        answer[1] = savings.add(dStartPriceOld).subtract(dStartPriceNew).setScale(0, RoundingMode.HALF_UP).intValue();
+        break;
+      }
+      savings = savings.add(BigDecimal.valueOf(savingperMonth));
+      dStartPriceOld = dStartPriceOld.subtract(dStartPriceOld.multiply(dPercentLossByMonth).multiply(BigDecimal.valueOf(.01)));
+      dStartPriceNew = dStartPriceNew.subtract(dStartPriceNew.multiply(dPercentLossByMonth).multiply(BigDecimal.valueOf(.01)));
+      if (i % 2 == 0){
+        dPercentLossByMonth = dPercentLossByMonth.add(BigDecimal.valueOf(.5));
+      }
+    }
+    return answer;
+  }
+
   public static void main(String[] args) {
-    countDeafRats("P O~ O~ ~O O~" );
+    nbMonths(2000, 8000, 1000, 1.5);
   }
 }
 
