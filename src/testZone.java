@@ -556,7 +556,7 @@ public class testZone {
     return smileyCount;
   }
 
-  public static double findUniq(double arr[])   {
+  public static double findUniq(double arr[]) {
     double unique = 0;
     for (int i = 0; i < arr.length; i++) {
       int j;
@@ -569,7 +569,7 @@ public class testZone {
         unique = arr[i];
       }
     }
-    if (arr[0] != arr[1] && arr[arr.length-1] == arr[1]){
+    if (arr[0] != arr[1] && arr[arr.length - 1] == arr[1]) {
       return arr[0];
     }
     return unique;
@@ -581,11 +581,11 @@ public class testZone {
     int sum = 0;
     for (String consonant : consonants) {
       char[] letter = consonant.toCharArray();
-      for (char ch : consonant.toCharArray()){
-        if (ch >= 'a' && ch <= 'z'){
+      for (char ch : consonant.toCharArray()) {
+        if (ch >= 'a' && ch <= 'z') {
           sum += 1 + ch - 'a';
         }
-        if (sum > consonantValue){
+        if (sum > consonantValue) {
           consonantValue = sum;
         }
       }
@@ -595,20 +595,23 @@ public class testZone {
   }
 
   public static int[] isPerfectPower(int n) {
-    for(int i = 2; i <= ((n < 30) ? n : 30) && i < 30; i++) {
-      double result = (double)Math.round(Math.pow(n, (double)1/i) * Math.pow(10, 10)) /  Math.pow(10, 10);
-      if((result == Math.floor(result))) return new int[] {(int)result, i};
+    for (int i = 2; i <= ((n < 30) ? n : 30) && i < 30; i++) {
+      double result =
+          (double) Math.round(Math.pow(n, (double) 1 / i) * Math.pow(10, 10)) / Math.pow(10, 10);
+      if ((result == Math.floor(result))) {
+        return new int[]{(int) result, i};
+      }
     }
     return null;
   }
 
   public static int bouncingBall(double h, double bounce, double window) {
-    if (h < 0 || bounce <= 0 || bounce >= 1 || window > h){
+    if (h < 0 || bounce <= 0 || bounce >= 1 || window > h) {
       return -1;
     }
     int count = -1;
     System.out.println(h + " " + bounce + " " + window);
-    for (double i = h; i > window; i *= bounce){
+    for (double i = h; i > window; i *= bounce) {
       count += 2;
     }
     return count;
@@ -617,23 +620,21 @@ public class testZone {
   public static int countDeafRats(final String town) {
     int piperPlacement = 0;
     int deafRats = 0;
-    for (int i = 0; i < town.length(); i++){
-      if (town.charAt(i) == 'P'){
+    for (int i = 0; i < town.length(); i++) {
+      if (town.charAt(i) == 'P') {
         piperPlacement = i;
       }
     }
     for (int i = 0; i < town.length(); i++) {
-      if (piperPlacement > i && town.charAt(i)=='~' && town.charAt(i+1)=='O'){
+      if (piperPlacement > i && town.charAt(i) == '~' && town.charAt(i + 1) == 'O') {
         i++;
-      }
-      else if (piperPlacement > i && town.charAt(i)=='O' && town.charAt(i+1)=='~'){
+      } else if (piperPlacement > i && town.charAt(i) == 'O' && town.charAt(i + 1) == '~') {
         deafRats++;
         i++;
       }
-      if (piperPlacement < i && town.charAt(i)=='O' && town.charAt(i+1)=='~'){
+      if (piperPlacement < i && town.charAt(i) == 'O' && town.charAt(i + 1) == '~') {
         i++;
-      }
-      else if (piperPlacement < i && town.charAt(i)=='~' && town.charAt(i+1)=='O'){
+      } else if (piperPlacement < i && town.charAt(i) == '~' && town.charAt(i + 1) == 'O') {
         deafRats++;
         i++;
       }
@@ -641,30 +642,59 @@ public class testZone {
     return deafRats;
   }
 
-  public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth, double percentLossByMonth) {
+  public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth,
+      double percentLossByMonth) {
     int[] answer = new int[2];
     BigDecimal savings = BigDecimal.ZERO;
     BigDecimal dStartPriceOld = BigDecimal.valueOf(startPriceOld);
     BigDecimal dStartPriceNew = BigDecimal.valueOf(startPriceNew);
-    BigDecimal dPercentLossByMonth= BigDecimal.valueOf(percentLossByMonth);
-    for (int i = 0; true; i++){
-      if (savings.add(dStartPriceOld).compareTo(dStartPriceNew) >= 0){
+    BigDecimal dPercentLossByMonth = BigDecimal.valueOf(percentLossByMonth);
+    for (int i = 0; true; i++) {
+      if (savings.add(dStartPriceOld).compareTo(dStartPriceNew) >= 0) {
         answer[0] = i;
-        answer[1] = savings.add(dStartPriceOld).subtract(dStartPriceNew).setScale(0, RoundingMode.HALF_UP).intValue();
+        answer[1] = savings.add(dStartPriceOld).subtract(dStartPriceNew)
+            .setScale(0, RoundingMode.HALF_UP).intValue();
         break;
       }
       savings = savings.add(BigDecimal.valueOf(savingperMonth));
-      dStartPriceOld = dStartPriceOld.subtract(dStartPriceOld.multiply(dPercentLossByMonth).multiply(BigDecimal.valueOf(.01)));
-      dStartPriceNew = dStartPriceNew.subtract(dStartPriceNew.multiply(dPercentLossByMonth).multiply(BigDecimal.valueOf(.01)));
-      if (i % 2 == 0){
+      dStartPriceOld = dStartPriceOld
+          .subtract(dStartPriceOld.multiply(dPercentLossByMonth).multiply(BigDecimal.valueOf(.01)));
+      dStartPriceNew = dStartPriceNew
+          .subtract(dStartPriceNew.multiply(dPercentLossByMonth).multiply(BigDecimal.valueOf(.01)));
+      if (i % 2 == 0) {
         dPercentLossByMonth = dPercentLossByMonth.add(BigDecimal.valueOf(.5));
       }
     }
     return answer;
   }
 
+  public static double[] xbonacci(double[] signature, int n) {
+    double[] newSequence = new double[n];
+    double sum;
+    if (n == signature.length) {
+      return signature;
+    }
+    if (n < signature.length) {
+      for (int i = 0; i < n; i++) {
+        newSequence[i] = signature[i];
+      }
+      return newSequence;
+    }
+    for (int i = 0; i < signature.length; i++) {
+      newSequence[i] = signature[i];
+    }
+    for (int i = signature.length; i < n; i++) {
+      sum = 0;
+      for (int j = i - signature.length; j < i; j++) {
+        sum += newSequence[j];
+      }
+      newSequence[i] = sum;
+    }
+    return newSequence;
+  }
+
   public static void main(String[] args) {
-    nbMonths(2000, 8000, 1000, 1.5);
+    xbonacci(new double[]{1, 1, 1, 1}, 10);
   }
 }
 
