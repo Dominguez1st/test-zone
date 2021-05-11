@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.lang.*;
 
@@ -693,8 +694,55 @@ public class testZone {
     return newSequence;
   }
 
+  public static String abbreviate(String string) {
+    StringBuilder str = new StringBuilder();
+    StringJoiner abbreviated = new StringJoiner(" ");
+    char punctuation = 0;
+
+    str.append(string);
+    if (str.charAt(str.length() - 1) == '.' || str.charAt(str.length() - 1) == '?' || str.charAt(str.length() - 1) == '!') {
+      punctuation = str.charAt(str.length() - 1);
+      str.deleteCharAt(str.length() - 1);
+    }
+
+    String[] stringArray = str.toString().split(" ");
+    str.delete(0, str.length());
+
+    for (String word : stringArray) {
+      if (word.length() > 3 && !word.contains("-")) {
+        word = word.charAt(0) + "" + (word.length() - 2) + (word.charAt(word.length() - 1));
+        abbreviated.add(word);
+      } else if (word.contains("-")) {
+        String[] hyphenedWords = word.split("-");
+        hyphenedWords[0] = hyphenedWords[0].charAt(0) + "" + (hyphenedWords[0].length() - 2) + (hyphenedWords[0].charAt(hyphenedWords[0].length() - 1));
+        hyphenedWords[1] = hyphenedWords[1].charAt(0) + "" + (hyphenedWords[1].length() - 2) + (hyphenedWords[1].charAt(hyphenedWords[1].length() - 1));
+        abbreviated.add(hyphenedWords[0] + "-" + hyphenedWords[1]);
+      } else {
+        abbreviated.add(word);
+      }
+    }
+    str.append(abbreviated);
+    if (punctuation != 0) {
+      str.append(punctuation);
+    }
+
+    System.out.println(str);
+    return str.toString();
+  }
+
+  public static String abbreviate2(String string) {
+    for (String word : string.replaceAll("[^a-zA-Z ]", " ").split(" ")) {
+      if (word.length() > 3) {
+        String sub = word.substring(1, word.length() - 1);
+        string = string.replace(word, word.replace(sub, String.valueOf(sub.length())));
+      }
+    }
+System.out.println(string);
+    return string;
+  }
+
   public static void main(String[] args) {
-    xbonacci(new double[]{1, 1, 1, 1}, 10);
+    abbreviate2("elephant-rides are really fun!");
   }
 }
 
