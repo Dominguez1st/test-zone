@@ -741,8 +741,25 @@ System.out.println(string);
     return string;
   }
 
+  public static boolean comp(int[] a, int[] b) {
+    if (a == null || b == null) return false;
+    int counter = 0;
+    for (int i = 0; i < a.length; i++){
+      for (int j = 0; j < b.length; j++){
+        if (a[i] * a[i] == b[j]){
+          counter +=1;
+          b[j] = -1; // Clears the spot from future use.
+          break;
+        }
+      }
+    }
+    return counter == a.length && a.length == b.length;
+  }
+
   public static void main(String[] args) {
-    abbreviate2("elephant-rides are really fun!");
+    int[] a = {121, 144, 19, 161, 19, 144, 19, 11};
+    int[] b = {121, 14641, 20736, 361, 25921, 361, 20736, 361};
+    comp(a,b);
   }
 }
 
