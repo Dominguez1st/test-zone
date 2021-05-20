@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class HowManyNumbers {
+public class HowManyNumbersIII {
 
   public static List<Long> findAll(final int sumDigits, final int numDigits) {
     long min = 0;
